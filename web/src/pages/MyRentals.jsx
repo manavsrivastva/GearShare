@@ -37,8 +37,8 @@ function MyRentals() {
       const data = response.data;
 
       setRentals(
-        Array.isArray(data) ? data : data.rentals || []
-      );
+  Array.isArray(data) ? data : data.active || []
+);
     } catch (err) {
       if (err.code !== "ERR_CANCELED") {
         setError(
@@ -134,26 +134,26 @@ function MyRentals() {
             </Typography>
 
             <Typography>
-              Item: {rental.item_name}
-            </Typography>
+  Item: {rental.item}
+</Typography>
 
-            <Typography>
-              SKU: {rental.sku}
-            </Typography>
+<Typography>
+  Rental ID: {rental.rental_id}
+</Typography>
 
-            <Typography>
-              Issue Date: {rental.issue_date}
-            </Typography>
+<Typography>
+  Due Date: {rental.due_date}
+</Typography>
 
-            <Typography>
-              Due Date: {rental.due_date}
-            </Typography>
+<Typography>
+  Days Overdue: {rental.days_overdue}
+</Typography>
 
-            <Chip
-              label={rental.return_date ? "Returned" : "Active"}
-              color={rental.return_date ? "success" : "warning"}
-              sx={{ alignSelf: "flex-start" }}
-            />
+<Chip
+  label="Active"
+  color="warning"
+  sx={{ alignSelf: "flex-start" }}
+/>
 
             {!rental.return_date && (
               <Button
